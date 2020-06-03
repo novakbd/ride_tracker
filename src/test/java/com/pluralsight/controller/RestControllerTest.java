@@ -2,6 +2,8 @@ package com.pluralsight.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +13,27 @@ import com.pluralsight.model.Ride;
 
 import org.junit.Test;
 
+@SpringBootTest
 public class RestControllerTest {
 
+	@Autowired
+	RideController rideController;
+
+	@Test
+	public void testCreateRide() {
+		RestTemplate restTemplate = new RestTemplate();
+		Ride ride = new Ride();
+		ride.setName("Bobsled Trail Ride");
+		ride.setDuration(35);
+
+		restTemplate.put("http://localhost:8800/ride", ride);
+	}
 	@Test(timeout=3000)
 	public void testGetRides() {
 		RestTemplate restTemplate = new RestTemplate();
 
 		ResponseEntity<List<Ride>> ridesResponse = restTemplate.exchange(
-				"http://localhost:8080/ride_tracker/rides", HttpMethod.GET,
+				"http://localhost:8800/rides", HttpMethod.GET,
 				null, new ParameterizedTypeReference<List<Ride>>() {
 				});
 		List<Ride> rides = ridesResponse.getBody();
