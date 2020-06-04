@@ -28,7 +28,8 @@ public class RestControllerTest {
 
 		restTemplate.put("http://localhost:8800/ride", ride);
 	}
-	@Test(timeout=3000)
+
+	@Test
 	public void testGetRides() {
 		RestTemplate restTemplate = new RestTemplate();
 
