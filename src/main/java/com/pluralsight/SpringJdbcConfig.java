@@ -27,8 +27,8 @@ public class SpringJdbcConfig {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
         dataSourceBuilder.url("jdbc:mysql://localhost:3306/ride_tracker?serverTimezone=" + TimeZone.getDefault().getID());
-        dataSourceBuilder.username("application1");
-        dataSourceBuilder.password("Application_Password123.");
+        dataSourceBuilder.username("app_user");
+        dataSourceBuilder.password("password");
         return dataSourceBuilder.build();
     }
 
