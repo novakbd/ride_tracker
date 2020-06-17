@@ -13,6 +13,8 @@ import com.pluralsight.model.Ride;
 
 import org.junit.Test;
 
+import javax.validation.constraints.Null;
+
 @SpringBootTest
 public class RestControllerTest {
 
@@ -26,7 +28,7 @@ public class RestControllerTest {
 		ride.setName("Bobsled Trail Ride");
 		ride.setDuration(35);
 
-		restTemplate.put("http://localhost:8800/ride", ride);
+		ride = restTemplate.postForObject("http://localhost:8800/ride", ride, Ride.class);
 	}
 
 	@Test
