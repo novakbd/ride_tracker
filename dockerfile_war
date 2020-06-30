@@ -1,0 +1,5 @@
+FROM tomcat:8.5-alpine
+ARG WAR_FILE
+ADD ${WAR_FILE} /usr/local/tomcat/webapps/app.war
+RUN sh -c 'touch /usr/local/tomcat/webapps/app.war'
+ENTRYPOINT [ "sh", "-c", "java -jar /usr/local/tomcat/webapps/app.war" ]
