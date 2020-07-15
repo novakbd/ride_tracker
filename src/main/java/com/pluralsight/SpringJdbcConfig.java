@@ -1,7 +1,11 @@
 package com.pluralsight;
 
+import com.pluralsight.repository.RideRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +19,9 @@ import java.util.TimeZone;
 @ComponentScan("com.pluralsight")
 @Configuration
 public class SpringJdbcConfig {
+    @Autowired
+    ApplicationContext context;
+
     @Bean
     @Primary
     public DataSource mysqlDataSource() {
@@ -38,5 +45,11 @@ public class SpringJdbcConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource);
         return jdbcTemplate;
+    }
+
+    @Bean
+    @Qualifier("MyRepositoryAlias")
+    public RideRepository MyRepositoryAlias (@Value("${service.repositoryclass}") String qualifier) {
+        return (RideRepository) context.getBean(qualifier);
     }
 }

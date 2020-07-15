@@ -18,11 +18,17 @@ import org.springframework.stereotype.Repository;
 
 import com.pluralsight.model.Ride;
 
-@Repository("rideRepository")
+@Repository("RideRepositoryImpl")
 public class RideRepositoryImpl implements RideRepository {
 
+	private JdbcTemplate jdbcTemplate;
+
 	@Autowired
-	JdbcTemplate jdbcTemplate;
+	public RideRepositoryImpl (JdbcTemplate jdbcTemplate)
+	{
+		this.jdbcTemplate = jdbcTemplate;
+		System.out.println("RideRepositoryImpl");
+	}
 
 	@Override
 	public List<Ride> getRides() {
