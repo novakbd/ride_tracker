@@ -38,7 +38,6 @@ public class RideRepositoryImpl implements RideRepository {
 
 	@Override
 	public Ride createRide(Ride ride) {
-		jdbcTemplate.update("insert into ride (name,duration) values (?,?)", ride.getName(), ride.getDuration());
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override

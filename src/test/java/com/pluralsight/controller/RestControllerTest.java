@@ -25,11 +25,11 @@ public class RestControllerTest {
 	public void testCreateRide() {
 		RestTemplate restTemplate = new RestTemplate();
 		Ride ride = new Ride();
-		ride.setName("Sagebrush Trail");
-		ride.setDuration(33);
+		ride.setName("Dani's ride 2");
+		ride.setDuration(125);
 
 		ride = restTemplate.postForObject("http://localhost:8800/ride", ride, Ride.class);
-		System.out.println("Ride: " + ride);
+		System.out.println("Ride: " + ride.getId());
 	}
 
 	@Test
