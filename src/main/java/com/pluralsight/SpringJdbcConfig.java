@@ -22,22 +22,22 @@ public class SpringJdbcConfig {
     @Autowired
     ApplicationContext context;
 
-    @Bean
-    @Primary
-    public DataSource mysqlDataSource() {
-/*        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/ride_tracker");
-        dataSource.setUsername("application1");
-        dataSource.setPassword("Application_Password123.");*/
-        //return dataSource;
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://localhost:3306/ride_tracker?serverTimezone=" + TimeZone.getDefault().getID());
-        dataSourceBuilder.username("app_user");
-        dataSourceBuilder.password("password");
-        return dataSourceBuilder.build();
-    }
+//    @Bean
+//    @Primary
+//    public DataSource mysqlDataSource() {
+///*        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/ride_tracker");
+//        dataSource.setUsername("application1");
+//        dataSource.setPassword("Application_Password123.");*/
+//        //return dataSource;
+//        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+//        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
+//        dataSourceBuilder.url("jdbc:mysql://localhost:3306/ride_tracker?serverTimezone=" + TimeZone.getDefault().getID());
+//        dataSourceBuilder.username("app_user");
+//        dataSourceBuilder.password("password");
+//        return dataSourceBuilder.build();
+//    }
 
     @Bean
     @Autowired
