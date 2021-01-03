@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pluralsight.repository.util.RideRowMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -22,23 +24,28 @@ import com.pluralsight.model.Ride;
 public class RideRepositoryImpl implements RideRepository {
 
 	private JdbcTemplate jdbcTemplate;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	public RideRepositoryImpl (JdbcTemplate jdbcTemplate)
 	{
 		this.jdbcTemplate = jdbcTemplate;
-		System.out.println("RideRepositoryImpl");
+		logger.info("RideRepositoryImpl");
 	}
 
 	@Override
 	public List<Ride> getRides() {
+		logger.info("getRides");
 		List<Ride> rides = jdbcTemplate.query("select * from ride", new RideRowMapper());
+		logger.debug("Rides: {}", rides);
 		return rides;
 	}
 
 	@Override
 	public Ride createRide(Ride ride) {
+		logger.info("createRide");
 		KeyHolder keyHolder = new GeneratedKeyHolder();
+		logger.debug("keyHolder: {}", keyHolder);
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
